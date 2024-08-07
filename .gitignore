@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# pnpm state files
+pnpm-lock.yaml
+
+# Husky
+.husky/
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+
+# Build outputs
+dist/
+build/
+
+# Local environment settings
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE settings
+.vscode/
+.idea/
