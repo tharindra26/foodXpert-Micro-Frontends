@@ -1,0 +1,15 @@
+.header-bar {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+
+.search-bar {
+    display: flex;
+    justify-content: flex-end;
+}

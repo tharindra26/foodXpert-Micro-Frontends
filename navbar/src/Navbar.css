@@ -1,0 +1,32 @@
+/* Navbar.css */
+.collapsed-button {
+    background-color: #12372a00;
+    color: #12372A;
+    box-shadow: none !important;
+}
+
+.collapsed-button:hover {
+    background-color: #12372A !important;
+    color: white !important;
+}
+
+.expanded-button {
+    background-color: rgba(173, 188, 159, 0);
+    color: #12372A;
+    box-shadow: none !important;
+}
+
+.expanded-button:hover {
+    background-color: #12372A !important;
+    color: white !important;
+}
+
+.ant-menu-item-selected {
+    background-color: #436850 !important;
+    color: white !important;
+}
+
+/* Remove default shadow of the navbar */
+.custom-menu {
+    box-shadow: none !important;
+}
