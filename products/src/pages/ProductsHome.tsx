@@ -2,6 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Row, Col, GetProps, Input } from 'antd';
 const { Title } = Typography;
 import { List, Card, Spin, Alert } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faAppleAlt,      // Fruits & Vegetables
+  faCheese,        // Dairy & Eggs
+  faDrumstickBite, // Meat & Seafood
+  faBreadSlice,    // Bakery & Bread
+  faBoxOpen,       // Pantry Staples
+  faSnowflake,     // Frozen Foods
+  faThLarge        // All Categories
+} from '@fortawesome/free-solid-svg-icons';
 import { fetchProducts } from '../services/ProductService';
 import { Button } from 'antd';
 import './ProductsHome.css';
@@ -41,23 +51,27 @@ const ProductsHome: React.FC = () => {
 
 
   const categories = [
-    { id: 1, image: 'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/products/350001--01--1686065805.webp', text: 'Category 1' },
-    { id: 2, image: 'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/products/340284--01--1623338896.webp', text: 'Category 2' },
-    { id: 3, image: 'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/products/320010--01--1549602291.webp', text: 'Category 3' },
-    { id: 4, image: 'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/products/123644--01--1702306088.webp', text: 'Category 4' },
-    { id: 5, image: 'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/products/310010--01--1555692008.webp', text: 'Category 5' },
-    { id: 5, image: 'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/products/118370--01--1613330068.webp', text: 'Category 5' },
+    { id: 1, icon: <FontAwesomeIcon icon={faThLarge} />, text: 'All' },
+    { id: 2, icon: <FontAwesomeIcon icon={faAppleAlt} />, text: 'Fruits & Vegetables' },
+    { id: 3, icon: <FontAwesomeIcon icon={faCheese} />, text: 'Dairy & Eggs' },
+    { id: 4, icon: <FontAwesomeIcon icon={faDrumstickBite} />, text: 'Meat & Seafood' },
+    { id: 5, icon: <FontAwesomeIcon icon={faBreadSlice} />, text: 'Bakery & Bread' },
+    { id: 6, icon: <FontAwesomeIcon icon={faBoxOpen} />, text: 'Pantry Staples' },
+    { id: 7, icon: <FontAwesomeIcon icon={faSnowflake} />, text: 'Frozen Foods' },
   ];
 
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: '0px', width: '100%' }}>
 
-      <Row className='categories' justify="center">
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, width: '100%',  }}>
+
+      <Row className='categories' justify="space-between">
         {categories.map(category => (
-          <Col key={category.id} xs={24} sm={8} md={4} lg={4} style={{ padding: '8px' }}>
-            <div className="category-item">
-              <img src={category.image} alt={category.text} className="category-image" />
-              <Title level={5} className="category-text">{category.text}</Title>
+          <Col key={category.id} xs={24} sm={8} md={3} lg={3}>
+            <div className="category-item" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+              <div style={{ fontSize: '20px', color:'#2C3639' }}>
+                {category.icon}
+              </div>
+              <Title level={5} className="category-text" style={{fontSize:'12px', margin:'0', padding:'0'}}>{category.text}</Title>
             </div>
           </Col>
         ))}

@@ -1,20 +1,27 @@
 import Logo from "./components/logo/Logo";
 import './Header.css';
-import { Button, Col, Input, Row, Space } from 'antd';
-import type { GetProps, MenuProps } from 'antd';
-import { Avatar, Dropdown, Menu } from 'antd';
-import { UserOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons';
+import { Button, Col, Row } from 'antd';
+import type { MenuProps } from 'antd';
+import { Avatar, Dropdown } from 'antd';
+import { UserOutlined, ShoppingCartOutlined, LoginOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
+import { useState, useEffect } from "react";
+import Link from "antd/es/typography/Link";
+
 
 const { Title } = Typography;
 
-type SearchProps = GetProps<typeof Input.Search>;
-
-const { Search } = Input;
 
 export default function Root(props) {
 
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Simulate checking for session token
+    const token = localStorage.getItem('authToken'); // Replace with your token check logic
+    setIsAuthenticated(!!token);
+  }, []);
+
 
   const items: MenuProps['items'] = [
     {
@@ -59,16 +66,33 @@ export default function Root(props) {
           </div>
         </Col>
 
-        <Col>
-          <Title level={4}>Welcome back, Tharindra</Title>
+        <Col >
+          <Title level={4} className="welcome-text">Welcome back, Tharindra</Title>
         </Col>
 
         <Col>
-          <Dropdown menu={{ items }} placement="bottomLeft">
-
-            <Avatar shape="square" size={48} icon={<UserOutlined />} />
-
-          </Dropdown>
+          {isAuthenticated ? (
+            <div className="header-actions" style={{ display: 'flex', alignItems: 'center' }}>
+              <Button type="primary" icon={<ShoppingCartOutlined />} style={{ marginRight: '10px' }}>
+                Cart
+              </Button>
+              <Dropdown menu={{ items }} placement="bottomLeft">
+                <Avatar shape="square" size={48} icon={<UserOutlined />} />
+              </Dropdown>
+            </div>
+          ) : (
+            <div className="header-actions" style={{ display: 'flex', alignItems: 'center' }}>
+              <Button type="primary" icon={<ShoppingCartOutlined />} style={{ marginRight: '10px' }}>
+                Cart
+              </Button>
+              <Button type="default" icon={<LoginOutlined />} style={{ marginRight: '10px' }}>
+                Sign In
+              </Button>
+              <Button type="default" icon={<UserAddOutlined />}>
+                <a href="/signup">Sign In</a>
+              </Button>
+            </div>
+          )}
         </Col>
 
       </Row>

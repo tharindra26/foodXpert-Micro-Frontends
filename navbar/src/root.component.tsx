@@ -41,17 +41,6 @@ const Navbar: React.FC = () => {
     { key: '1', icon: <FontAwesomeIcon icon={faHouse} />, label: <a href="/home">Home</a> },
     { key: '2', icon: <FontAwesomeIcon icon={faBoxOpen} />, label: <a href="/products">Foods</a> },
     {
-      key: 'cart-sub',
-      icon: <FontAwesomeIcon icon={faShoppingCart} />,
-      label: 'Cart',
-      children: [
-        { key: '5', icon: <FontAwesomeIcon icon={faPlus} />, label: <a href="/option5">New Cart</a> },
-        { key: '6', icon: <FontAwesomeIcon icon={faBasketShopping} />, label: <a href="/option6">Cart 1</a> },
-        { key: '7', icon: <FontAwesomeIcon icon={faBasketShopping} />, label: <a href="/option7">Cart 2</a> },
-        { key: '8', icon: <FontAwesomeIcon icon={faBasketShopping} />, label: <a href="/option8">Cart 3</a> },
-      ],
-    },
-    {
       key: 'order-status',
       icon: <FontAwesomeIcon icon={faBox} />,
       label: 'My Orders',
@@ -77,8 +66,9 @@ const Navbar: React.FC = () => {
       flexDirection: 'column',
       justifyContent: 'space-between',
       flex: '1',
-      height: '100%',
-      backgroundColor: '#ffffff'
+      height: '90vh',
+      backgroundColor: '#ffffff',
+      // border: '1px solid red',
     }}>
       <Menu
         defaultSelectedKeys={['1']}
@@ -87,6 +77,7 @@ const Navbar: React.FC = () => {
         inlineCollapsed={collapsed}
         className='custom-menu'
         items={items}
+        style={{ height: '100%', }}
       />
       <Button
         type="primary"

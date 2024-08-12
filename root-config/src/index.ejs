@@ -26,26 +26,23 @@
 
     .header {
       background-color: #ffffff;
-      position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       z-index: 1000;
-      height: 80px;
+      height: auto;
     }
 
-    .middle-section {
+    /* .middle-section {
       display: flex;
       flex-direction: row;
       margin-top:80px;
-      height: calc(100vh - 80px);
+      height: auto;
     }
 
     .navbar {
       position: fixed;
       top: 80px;
       left: 0;
-      width: 200px;
+      width: auto;
       height: calc(100vh - 80px);
       background-color: white;
       overflow-y: auto;
@@ -56,11 +53,43 @@
       margin-left: 200px;
       height: 100%;
       overflow: hidden;
+    } */
+    .middle-section {
+      display: flex;
+      flex-direction: row;
+      flex: 1 1 auto;
+      /* Middle section occupies the remaining space */
+      overflow: hidden;
+      height: auto;
+      /* Prevent content overflow */
+    }
+
+    .navbar {
+      /* Enable scrolling in navbar if content overflows */
+      transition: flex 0.3s ease;
+      /* Smooth transition for resize */
+      height: 100%;
+    }
+
+    .content-section {
+      flex: 1 1 auto;
+      /* Content section takes the remaining space */
+      overflow-y: auto;
+      /* Enable scrolling in content section */
+      padding: 0px 0px;
+      /* Optional: Add padding to the content section */
+    }
+
+
+    /* Add this CSS to handle scrolling behavior */
+    .middle-section {
+      height: 100%;
+      overflow: hidden;
+      /* Prevents middle-section from scrolling */
     }
 
     .microservice-space {
-      padding: 20px;
-      overflow-y: auto;
+      /* overflow-y: auto; */
       height: 100%;
     }
   </style>
@@ -101,7 +130,8 @@
       }
     }
   </script>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script"
+    crossorigin="anonymous">
 
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
