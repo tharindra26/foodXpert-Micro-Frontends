@@ -1,29 +1,74 @@
 <single-spa-router>
-  
-  <div class="base">
+
+  <!-- <div class="base"> -->
+  <!-- Signup route for full-page display -->
+  <route default>
     <div class="header">
       <application name="@foodXpert/foodXpert-header"></application>
     </div>
-    
 
     <div class="middle-section">
       <div class="navbar">
         <application name="@foodXpert/foodXpert-navbar"></application>
       </div>
-
       <div class="content-section">
-            <route default>
-              <application name="@foodXpert/foodXpert-home"></application>
-            </route>
-            <route path="home">
-              <application name="@foodXpert/foodXpert-home"></application>
-            </route>
-            <route path="products">
-              <application name="@foodXpert/foodXpert-products" ></application>
-            </route>
+        <application name="@foodXpert/foodXpert-home"></application>
       </div>
     </div>
-  </div>
+  </route>
+
+  <route path="signup">
+    <application name="@foodXpert/foodXpert-home"></application>
+  </route>
+
+  <route path="login">
+    <application name="@foodXpert/foodXpert-home"></application>
+  </route>
+
+  <route path="home">
+    <div class="header">
+      <application name="@foodXpert/foodXpert-header"></application>
+    </div>
+
+    <div class="middle-section">
+      <div class="navbar">
+        <application name="@foodXpert/foodXpert-navbar"></application>
+      </div>
+      <div class="content-section">
+        <application name="@foodXpert/foodXpert-home"></application>
+      </div>
+    </div>
+  </route>
+
+  <route path="products">
+    <div class="header">
+      <application name="@foodXpert/foodXpert-header"></application>
+    </div>
+
+    <div class="middle-section">
+      <div class="navbar">
+        <application name="@foodXpert/foodXpert-navbar"></application>
+      </div>
+      <div class="content-section">
+        <application name="@foodXpert/foodXpert-products"></application>
+      </div>
+    </div>
+  </route>
+
+  <route path="cart/:cartId">
+    <div class="header">
+      <application name="@foodXpert/foodXpert-header"></application>
+    </div>
+
+    <div class="middle-section">
+      <div class="navbar">
+        <application name="@foodXpert/foodXpert-navbar"></application>
+      </div>
+      <div class="content-section">
+        <application name="@foodXpert/foodXpert-cart"></application>
+      </div>
+    </div>
+  </route>
 
 
 

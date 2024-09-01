@@ -2,6 +2,7 @@
 .logo-container {
   display: flex;
   align-items: center;
+  
 }
 
 .logo-image {
@@ -11,6 +12,8 @@
 }
 
 .logo-text {
-  font-size: 24px; /* Adjust the font size as needed */
-  font-weight: bold;
+  font-family: 'Permanent Marker', sans-serif;
+  font-size: 35px; /* Adjust the font size as needed */
+  letter-spacing: 10px;
+  color: white;
 }

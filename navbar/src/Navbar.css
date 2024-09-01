@@ -1,7 +1,7 @@
 /* Navbar.css */
 .collapsed-button {
     background-color: #12372a00;
-    color: #12372A;
+    color: white;
     box-shadow: none !important;
 }
 
@@ -12,7 +12,7 @@
 
 .expanded-button {
     background-color: rgba(173, 188, 159, 0);
-    color: #12372A;
+    color: white;
     box-shadow: none !important;
 }
 

@@ -5,9 +5,9 @@ import logo from './foodXpertLogo3.png';
 const Logo = () => {
   return (
     <Row className="logo-container">
-      <Col>
+      {/* <Col>
         <img src={logo} alt="Logo" className="logo-image" />
-      </Col>
+      </Col> */}
       <Col>
         <div className="logo-text">foodXpert</div>
       </Col>

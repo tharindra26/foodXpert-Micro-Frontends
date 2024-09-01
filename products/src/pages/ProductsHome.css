@@ -4,12 +4,11 @@
   justify-content: flex-end;
 }
 
-.product-image {
-  height: 150px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.product-image .image {
+  width: 150px; /* Adjust the size as needed */
+  height: 150px; /* Adjust the size as needed */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the entire circle */
 }
 
 .product-image .image {
@@ -39,4 +38,8 @@
 .category-item {
   background-color: white;
   border-radius: 10px;
+}
+
+.ant-spin-dot-item {
+  background-color: red;
 }

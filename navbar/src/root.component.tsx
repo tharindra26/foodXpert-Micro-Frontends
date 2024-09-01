@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  AppstoreOutlined,
-  ContainerOutlined,
-  DesktopOutlined,
-  MailOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  PieChartOutlined,
 } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouse,
   faBoxOpen,
-  faShoppingCart,
-  faPlus,
-  faBasketShopping,
   faBox,
   faTruck,
   faMoneyCheckDollar,
@@ -22,7 +14,7 @@ import {
   faTags,
   faEnvelope,
   faHeadset,
- faMagnifyingGlassLocation
+  faMagnifyingGlassLocation
 } from '@fortawesome/free-solid-svg-icons';
 import type { MenuProps } from 'antd';
 import { Button, Menu } from 'antd';
@@ -32,14 +24,31 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const Navbar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedKey, setSelectedKey] = useState<string>('1');
 
+  // Toggle collapsed state
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
 
+  // Handle menu item click
+  const handleMenuClick = (e: { key: string }) => {
+    setSelectedKey(e.key);
+    sessionStorage.setItem('selectedMenuItem', e.key);
+  };
+
+  // Read selected menu item from session storage on mount
+  useEffect(() => {
+    const savedKey = sessionStorage.getItem('selectedMenuItem');
+    if (savedKey) {
+      setSelectedKey(savedKey);
+    }
+  }, []);
+
+  // Menu items
   const items: MenuItem[] = [
     { key: '1', icon: <FontAwesomeIcon icon={faHouse} />, label: <a href="/home">Home</a> },
-    { key: '2', icon: <FontAwesomeIcon icon={faBoxOpen} />, label: <a href="/products">Foods</a> },
+    { key: '2', icon: <FontAwesomeIcon icon={faBoxOpen} />, label: <a href="/products">Products</a> },
     {
       key: 'order-status',
       icon: <FontAwesomeIcon icon={faBox} />,
@@ -47,14 +56,13 @@ const Navbar: React.FC = () => {
       children: [
         { key: '9', icon: <FontAwesomeIcon icon={faMoneyCheckDollar} />, label: <a href="/option5">To Pay</a> },
         { key: '10', icon: <FontAwesomeIcon icon={faClipboardCheck} />, label: 'To Ship' },
-        { key: '11', icon: <FontAwesomeIcon icon={faTruck} />, label: 'To Recieve' },
+        { key: '11', icon: <FontAwesomeIcon icon={faTruck} />, label: 'To Receive' },
       ],
     },
     { key: 'promotions', icon: <FontAwesomeIcon icon={faTags} />, label: <a href="/home">Discounts</a> },
     { key: 'messages', icon: <FontAwesomeIcon icon={faEnvelope} />, label: <a href="/home">Messages</a> },
-    { key: 'messages', icon: <FontAwesomeIcon icon={faHeadset} />, label: <a href="/home">Chat With Us</a> },
-    { key: 'messages', icon: <FontAwesomeIcon icon={faMagnifyingGlassLocation} />, label: <a href="/home">Contact Us</a> },
-
+    { key: 'chat', icon: <FontAwesomeIcon icon={faHeadset} />, label: <a href="/home">Chat With Us</a> },
+    { key: 'contact', icon: <FontAwesomeIcon icon={faMagnifyingGlassLocation} />, label: <a href="/home">Contact Us</a> },
   ];
 
   return (
@@ -66,18 +74,18 @@ const Navbar: React.FC = () => {
       flexDirection: 'column',
       justifyContent: 'space-between',
       flex: '1',
-      height: '90vh',
-      backgroundColor: '#ffffff',
-      // border: '1px solid red',
+      height: '88vh',
+      backgroundColor: '#2C3639',
     }}>
       <Menu
-        defaultSelectedKeys={['1']}
+        selectedKeys={[selectedKey]}
         defaultOpenKeys={['sub1']}
         mode="inline"
         inlineCollapsed={collapsed}
         className='custom-menu'
         items={items}
-        style={{ height: '100%', }}
+        style={{ height: '100%', borderRadius: '10px' }}
+        onClick={handleMenuClick} // Handle menu item click
       />
       <Button
         type="primary"
