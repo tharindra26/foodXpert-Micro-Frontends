@@ -79,10 +79,10 @@ const CartDetails: React.FC = () => {
     }
   };
 
-  const handleDeleteItem = async (productId: number) => {
+  const handleDeleteItem = async (id: number) => {
     try {
-      await deleteCartItem(productId);
-      const updatedItems = cart.items.filter((item: any) => item.productId !== productId);
+      await deleteCartItem(id);
+      const updatedItems = cart.items.filter((item: any) => item.id !== id);
       setCart({ ...cart, items: updatedItems });
       notification.success({ message: 'Item deleted successfully' });
     } catch (error) {
@@ -140,7 +140,7 @@ const CartDetails: React.FC = () => {
       render: (_: any, record: any) => (
         <DeleteOutlined
           style={{ color: 'red', cursor: 'pointer', fontSize: '16px' }}
-          onClick={() => handleDeleteItem(record.productId)}
+          onClick={() => handleDeleteItem(record.id)}
         />
       ),
     },

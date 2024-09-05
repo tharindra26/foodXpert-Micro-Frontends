@@ -65,6 +65,8 @@ export default function Root() {
   const handleLogout = () => {
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('selectedMenuItem');
+    sessionStorage.removeItem('selectedCartId');
     setIsAuthenticated(false);
     setUserEmail(null);
     setCarts([]);
@@ -87,16 +89,31 @@ export default function Root() {
       try {
         const response = await createCart(userEmail, newCartName);
         const newCart = response.data;
+  
+        // Update carts and set the newly created cart as the selected cart
         setCarts([...carts, newCart]);
         setSelectedCart(newCart);
+  
+        // Set the new cart's ID in session storage
+        sessionStorage.setItem('selectedCartId', newCart.id.toString());
+  
+        // Clear the modal input and close the modal
         setNewCartName('');
         setIsModalVisible(false);
+  
+        // Notify the user that the cart has been created and selected
+        notification.success({
+          message: 'Cart Created',
+          description: `Cart "${newCart.cartName}" has been created and selected.`,
+          duration: 2,
+        });
       } catch (error) {
         console.error('Error creating cart:', error);
         notification.error({ message: 'Failed to create cart' });
       }
     }
   };
+  
 
   const cartMenuItems = [
     ...carts.map(cart => ({
